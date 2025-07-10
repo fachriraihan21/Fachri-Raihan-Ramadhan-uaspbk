@@ -1,26 +1,56 @@
 <template>
   <div id="app">
     <nav class="navbar">
-      <router-link to="/" class="nav-link">Home</router-link>
-      <router-link to="/about" class="nav-link">About</router-link>
-      <router-link to="/contact" class="nav-link">Contact</router-link>
-      <router-link to="/product" class="nav-link">Product</router-link>
+      <!-- Logo di kiri -->
+      <router-link to="/" class="logo-container">
+        <img src="@/assets/logo/Kubang Store.jpg" alt="Kubang Store Logo" class="logo" />
+
+      </router-link>
+
+      <!-- Navigasi utama di tengah -->
+      <div class="nav-left">
+        <router-link to="/" class="nav-link">Home</router-link>
+        <router-link to="/product" class="nav-link">Product</router-link>
+        <router-link to="/about" class="nav-link">About</router-link>
+        <router-link to="/contact" class="nav-link">Contact</router-link>
+      </div>
+
+      <!-- Login/Logout di kanan -->
+      <div class="nav-right">
+        <router-link v-if="!isLoggedIn" to="/login" class="login-button">Login</router-link>
+        <button v-if="showLogout" @click="logout" class="logout-button">Logout</button>
+      </div>
     </nav>
 
-    <main class="main-content">
-      <router-view />
-    </main>
+    <router-view />
   </div>
 </template>
 
 <script>
+import { useUserStore } from './stores/userStore'
+
 export default {
-  name: 'App'
+  name: 'App',
+  computed: {
+    isLoggedIn() {
+      const userStore = useUserStore()
+      return userStore.user !== null
+    },
+    showLogout() {
+      return this.isLoggedIn && this.$route.name !== 'Login'
+    }
+  },
+  methods: {
+    logout() {
+      const userStore = useUserStore()
+      userStore.logout()
+      this.$router.push({ name: 'Home' })
+    }
+  }
 }
 </script>
 
 <style>
-/* Reset dan gaya dasar */
 * {
   margin: 0;
   padding: 0;
@@ -37,20 +67,45 @@ body {
   text-align: center;
 }
 
-/* Navbar styling */
 .navbar {
   background-color: #2c3e50;
   padding: 20px;
   display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  margin-right: 30px;
+}
+
+.logo {
+  height: 70px;
+  margin-right: 0px;
+}
+
+.logo-text {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.nav-left {
+  display: flex;
+  gap: 50px;
   justify-content: center;
-  gap: 30px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  margin-right: 150px;
 }
 
 .nav-link {
   color: white;
   text-decoration: none;
   font-weight: bold;
+  font-size: 20px;
   transition: color 0.3s;
 }
 
@@ -58,12 +113,47 @@ body {
   color: #18bc9c;
 }
 
-/* Content styling */
+.nav-right {
+  position: absolute;
+  right: 40px;
+  top: 45px;
+}
+
+.login-button {
+  background-color: #3498db;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.login-button:hover {
+  background-color: #2980b9;
+}
+
+.logout-button {
+  background-color: #c6c1c1;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #dedad9;
+}
+
 .main-content {
   padding: 40px 20px;
 }
 
-/* Page layout */
 h1, h2 {
   margin-bottom: 20px;
   color: #2c3e50;
@@ -77,7 +167,6 @@ p {
   line-height: 1.6;
 }
 
-/* Card styling for sections */
 .product-summary, .contact-box, .about-box {
   background: white;
   padding: 20px;
@@ -88,28 +177,5 @@ p {
   margin-left: auto;
   margin-right: auto;
   text-align: left;
-}
-
-/* Button styling */
-.btn {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 10px 20px;
-  background-color: #18bc9c;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  transition: background 0.3s ease;
-}
-
-.btn:hover {
-  background-color: #149b82;
-}
-
-/* Product image styling */
-.product-image {
-  max-width: 100%;
-  border-radius: 10px;
-  margin-bottom: 20px;
 }
 </style>
