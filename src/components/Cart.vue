@@ -1,3 +1,4 @@
+[media pointer="file-service://file-LAGQszRxEQjwh7ADXE2ux9"]
 <template>
   <div class="cart-container">
     <h1>🛒 Keranjang Belanja</h1>
@@ -12,8 +13,14 @@
         <div class="cart-info">
           <h3>{{ item.name }}</h3>
           <p>Harga: Rp {{ item.price.toLocaleString() }}</p>
-          <input type="number" v-model.number="item.quantity" min="1" @change="updateQty(item.id, item.quantity)" />
-          <button @click="removeItem(item.id)">Hapus</button>
+
+          <div class="qty-controls">
+            <button @click="decreaseQty(item.id)">−</button>
+            <input type="number" :value="item.qty" readonly />
+            <button @click="increaseQty(item.id)">+</button>
+          </div>
+
+          <button class="delete" @click="removeItem(item.id)">Hapus</button>
         </div>
       </div>
 
@@ -27,21 +34,21 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { useCartStore } from '@/stores/cartStore'
 import { storeToRefs } from 'pinia'
 
-export default {
-  name: 'CartPage',
-  setup() {
-    const cart = useCartStore()
-    const { items: cartItems, totalPrice: total } = storeToRefs(cart)
+const cart = useCartStore()
+const { cart: cartItems, totalPrice: total } = storeToRefs(cart)
 
-    const updateQty = (id, qty) => cart.updateQuantity(id, qty)
-    const removeItem = (id) => cart.removeFromCart(id)
-
-    return { cartItems, total, updateQty, removeItem }
-  }
+function removeItem(id) {
+  cart.removeFromCart(id)
+}
+function increaseQty(id) {
+  cart.increaseQty(id)
+}
+function decreaseQty(id) {
+  cart.decreaseQty(id)
 }
 </script>
 
@@ -65,20 +72,41 @@ export default {
 .cart-info {
   flex: 1;
 }
-input[type="number"] {
-  width: 60px;
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   margin: 0.5rem 0;
 }
-button {
-  background-color: crimson;
+.qty-controls input {
+  width: 50px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.3rem;
+}
+.qty-controls button {
+  background-color: #007b8a;
   color: white;
-  padding: 0.3rem 0.8rem;
   border: none;
-  border-radius: 5px;
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
   cursor: pointer;
+}
+.delete {
+  background-color: crimson;
+  margin-top: 0.5rem;
 }
 .checkout-btn {
   background-color: #007b8a;
   margin-top: 1rem;
+  padding: 0.7rem 1.2rem;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 </style>
+
+

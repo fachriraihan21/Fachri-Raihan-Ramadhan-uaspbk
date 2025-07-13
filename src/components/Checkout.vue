@@ -11,15 +11,18 @@
 
 <script>
 import { useCartStore } from '@/stores/cartStore'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 
 export default {
   setup() {
     const cart = useCartStore()
-    const { totalPrice: total } = storeToRefs(cart)
+    const { totalPrice } = storeToRefs(cart)
+    const total = ref(0)
 
     onMounted(() => {
+      // Simpan nilai total sebelum mengosongkan cart
+      total.value = totalPrice.value
       cart.clearCart()
     })
 
@@ -33,12 +36,14 @@ export default {
   padding: 2rem;
   text-align: center;
 }
+
 button {
   margin-top: 1.5rem;
   background-color: #007b8a;
   color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 20px;
   border: none;
   cursor: pointer;
 }

@@ -1,13 +1,12 @@
 <template>
   <div id="app">
     <nav class="navbar">
-      <!-- Logo di kiri -->
+      <!-- Logo -->
       <router-link to="/" class="logo-container">
         <img src="@/assets/logo/Kubang Store.jpg" alt="Kubang Store Logo" class="logo" />
-
       </router-link>
 
-      <!-- Navigasi utama di tengah -->
+      <!-- Navigasi -->
       <div class="nav-left">
         <router-link to="/" class="nav-link">Home</router-link>
         <router-link to="/product" class="nav-link">Product</router-link>
@@ -15,8 +14,13 @@
         <router-link to="/contact" class="nav-link">Contact</router-link>
       </div>
 
-      <!-- Login/Logout di kanan -->
+      <!-- Ikon Keranjang, Login, Logout -->
       <div class="nav-right">
+        <router-link to="/cart" class="cart-icon-wrapper" title="Lihat Keranjang">
+          <img src="@/assets/icons/shopping-cart.png" alt="Cart" class="cart-icon" />
+          <span v-if="totalItems > 0" class="cart-badge">{{ totalItems }}</span>
+        </router-link>
+
         <router-link v-if="!isLoggedIn" to="/login" class="login-button">Login</router-link>
         <button v-if="showLogout" @click="logout" class="logout-button">Logout</button>
       </div>
@@ -28,9 +32,16 @@
 
 <script>
 import { useUserStore } from './stores/userStore'
+import { useCartStore } from './stores/cartStore'
+import { storeToRefs } from 'pinia'
 
 export default {
   name: 'App',
+  setup() {
+    const cart = useCartStore()
+    const { totalItems } = storeToRefs(cart)
+    return { totalItems }
+  },
   computed: {
     isLoggedIn() {
       const userStore = useUserStore()
@@ -51,6 +62,7 @@ export default {
 </script>
 
 <style>
+/* Global & Layout */
 * {
   margin: 0;
   padding: 0;
@@ -67,6 +79,7 @@ body {
   text-align: center;
 }
 
+/* Navbar */
 .navbar {
   background-color: #2c3e50;
   padding: 20px;
@@ -75,6 +88,7 @@ body {
   position: relative;
 }
 
+/* Logo */
 .logo-container {
   display: flex;
   align-items: center;
@@ -85,14 +99,9 @@ body {
 
 .logo {
   height: 70px;
-  margin-right: 0px;
 }
 
-.logo-text {
-  font-size: 1.3rem;
-  font-weight: bold;
-}
-
+/* Menu Tengah */
 .nav-left {
   display: flex;
   gap: 50px;
@@ -113,12 +122,40 @@ body {
   color: #18bc9c;
 }
 
+/* Kanan: Cart & Auth */
 .nav-right {
   position: absolute;
   right: 40px;
   top: 45px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
+/* Cart Ikon */
+.cart-icon-wrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.cart-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #e74c3c;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 3px 7px;
+}
+
+/* Login & Logout */
 .login-button {
   background-color: #3498db;
   color: white;
@@ -148,34 +185,5 @@ body {
 
 .logout-button:hover {
   background-color: #dedad9;
-}
-
-.main-content {
-  padding: 40px 20px;
-}
-
-h1, h2 {
-  margin-bottom: 20px;
-  color: #2c3e50;
-}
-
-p {
-  font-size: 18px;
-  color: #555;
-  max-width: 600px;
-  margin: 0 auto 20px;
-  line-height: 1.6;
-}
-
-.product-summary, .contact-box, .about-box {
-  background: white;
-  padding: 20px;
-  margin-top: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left;
 }
 </style>

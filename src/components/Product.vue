@@ -42,45 +42,138 @@ const products = [
     id: 1,
     name: 'Xiaomi Redmi Note 13',
     price: 2499000,
-    description: 'Layar AMOLED 6.67 inci, Kamera 108MP, Baterai 5000mAh',
+    description: 'Layar AMOLED 6.67 inci, Kamera 108MP',
     image: 'https://fdn2.mobgsm.com/vv/pics/xiaomi/xiaomi-redmi-note-13-4g-2.jpg'
   },
   {
+ 
     id: 2,
-    name: 'Realme C51',
-    price: 1599000,
-    description: 'RAM 4GB+4GB, Layar 6.7\", Fast Charging 33W',
-    image: 'https://fdn2.mobgsm.com/vv/pics/realme/realme-c51-4.jpg'
+    name: 'POCO X5 Pro 5G',
+    price: 3999000,
+    description: 'Snapdragon 778G, AMOLED 120Hz, Kamera 108MP',
+    image: 'https://fdn2.mobgsm.com/vv/pics/xiaomi/xiaomi-poco-x5-pro-5g-1.jpg'
+
   },
   {
     id: 3,
-    name: 'Infinix Hot 40i',
-    price: 1749000,
-    description: 'Storage 128GB, Kamera AI 50MP, Desain stylish',
-    image: 'https://fdn2.mobgsm.com/vv/pics/infinix/infinix-hot-40i-2.jpg'
+    name: 'Vivo Y33s',
+    price: 2499000,
+    description: 'Kamera 50MP, RAM 8GB + Extended, Baterai 5000mAh',
+    image: 'https://fdn2.mobgsm.com/vv/pics/vivo/vivo-y33s-1.jpg'
   },
-  {
+  { 
     id: 4,
-    name: 'Vivo Y36',
-    price: 2599000,
-    description: 'RAM 8GB, Storage 256GB, Desain Premium',
-    image: 'https://fdn2.mobgsm.com/vv/pics/vivo/vivo-y36-2.jpg'
+    name: 'Vivo V21 5G',
+    price: 4899000,
+    description: 'Selfie Kamera 44MP OIS, Layar AMOLED, RAM 8GB',
+    image: 'https://fdn2.mobgsm.com/vv/pics/vivo/vivo-v21-5g-1.jpg'
   },
   {
     id: 5,
-    name: 'Infinix Zero 5G 2023',
-    price: 2899000,
-    description: 'Dimensity 920, RAM 8GB, Kamera 50MP',
-    image: 'https://fdn2.mobgsm.com/vv/pics/infinix/infinix-zero-5g-2023-2.jpg'
+    name: 'Samsung Galaxy A04',
+    price: 1499000,
+    description: 'Layar 6.5 inci, Kamera 50MP, Baterai 5000mAh',
+    image: 'https://fdn2.mobgsm.com/vv/pics/samsung/samsung-galaxy-a04-1.jpg'
+
   },
   {
     id: 6,
-    name: 'iPhone SE 2022',
-    price: 7999000,
-    description: 'Chip A15 Bionic, Kamera 12MP, Touch ID',
-    image: 'https://fdn2.mobgsm.com/vv/pics/apple/apple-iphone-se-2022-1.jpg'
+    name: 'Realme 11 Pro+',
+    price: 5999000,
+    description: 'Kamera 200MP, RAM 12GB, Layar AMOLED Lengkung',
+    image: 'https://fdn2.mobgsm.com/vv/pics/realme/realme-11-pro-plus-1.jpg'
   },
-]
+  {
+    id: 7,
+    name: 'Samsung Galaxy A14',
+    price: 2499000,
+    description: 'Layar 6.6 inci, Kamera 50MP, Baterai 5000mAh',
+    image: 'https://fdn2.mobgsm.com/vv/pics/samsung/samsung-galaxy-a14-5g-1.jpg'
+  },
+  {
+    id: 8,
+    name: 'Oppo A78',
+    price: 2999000,
+    description: 'RAM 8GB, Layar AMOLED, Fast Charging',
+    image: 'https://fdn2.mobgsm.com/vv/pics/oppo/oppo-a78-4g-1.jpg'
+  },
+  {
+    id: 9,
+    name: 'Nokia G60',
+    price: 2999000,
+    description: 'Layar 6.58 inci, Kamera 50MP, Baterai 4500mAh',
+    image: 'https://fdn2.mobgsm.com/vv/pics/nokia/nokia-g60-5g-1.jpg'
+  },
+  {
+    id: 10,
+    name: 'Google Pixel 7a',
+    price: 5999000,
+    description: 'Kamera AI, Layar OLED, Chip Google Tensor',
+    image: 'https://fdn2.mobgsm.com/vv/pics/google/google-pixel-7a-1.jpg'
+  },
+  {
+    id: 11,
+    name: 'iPhone 14',
+    price: 12999000,
+    description: 'Kamera 12MP f/1.5, A15 Bionic, Crash Detection',
+    image: 'https://fdn2.mobgsm.com/vv/pics/apple/apple-iphone-14-1.jpg'
+  },
+  {
+    id: 12,
+    name: 'Vivo X80 Pro',
+    price: 12999000,
+    description: 'Kamera ZEISS, Snapdragon 8 Gen 1, Layar AMOLED 120Hz',
+    image: 'https://fdn2.mobgsm.com/vv/pics/vivo/vivo-x80-pro-1.jpg'
+  },
+  {
+    id: 13,
+    name: 'OPPO A98 5G',
+    brand: 'Oppo',
+    price: 4999000,
+    description: 'Layar 120Hz, Snapdragon 695 5G, Baterai 5000mAh',
+    image: 'https://fdn2.mobgsm.com/vv/pics/oppo/oppo-a98-5g-1.jpg'
+  },
+  {
+    id: 14,
+    name: 'Huawei Nova 11 Pro',
+    brand: 'Huawei',
+    price: 7499000,
+    description: 'Dual selfie camera, OLED 120Hz, Snapdragon 778G 4G',
+    image: 'https://fdn2.mobgsm.com/vv/pics/huawei/huawei-nova11-pro-1.jpg'
+  },
+  {
+    id: 15,
+    name: 'OPPO Reno8 T',
+    brand: 'Oppo',
+    price: 4499000,
+    description: 'Layar AMOLED, kamera 100MP, dan desain premium',
+    image: 'https://fdn2.mobgsm.com/vv/pics/oppo/oppo-reno8-t-1.jpg'
+  },
+  {
+    id: 16,
+    name: 'Realme GT Neo 6',
+    brand: 'Realme',
+    price: 7199000,
+    description: 'Snapdragon 8s Gen 3, Layar AMOLED 144Hz',
+    image: 'https://fdn2.mobgsm.com/vv/pics/realme/realme-gt-neo6-1.jpg'
+  },
+  {
+    id: 17,
+    name: 'Xiaomi 14 Ultra',
+    brand: 'Xiaomi',
+    price: 18999000,
+    description: 'Snapdragon 8 Gen 3, Layar LTPO AMOLED 120Hz',
+    image: 'https://fdn2.mobgsm.com/vv/pics/xiaomi/xiaomi-14-ultra-1.jpg'
+  },
+  {
+    id: 53,
+    name: 'Nokia G42 5G',
+    brand: 'Nokia',
+    price: 3199000,
+    description: 'Snapdragon 480+ 5G, RAM 6GB, layar 90Hz, Android 13',
+    image: 'https://fdn2.mobgsm.com/vv/pics/nokia/nokia-g42-5g-1.jpg'
+  }
+  ]
 </script>
 
 <style scoped>
